@@ -1,5 +1,8 @@
 <template>
   <div class="">
+        <video ref="videoRef" crossorigin="anonymous" muted loop id="cloudsVideo">
+    <source src="" type="video/mp4">
+    </video>
     <div class="container" id="loginContainer">
       <div class="row">
         <div class="col-md-4 offset-md-4">
@@ -32,18 +35,22 @@ export default {
   name: 'Login',
   props: {
     msg: String
-  }
+  },
+   mounted: function(){
+    this.$refs.videoRef.src = "https://wnortier.github.io/clouds-video/video/Clouds.mp4"
+    this.$refs.videoRef.play()
+   }
 };
 </script>
 
-<style>
+<style scoped>
 
 #loginContainer {
   margin-top: 15%;
 }
 
 .card {
-  opacity: 95%;
+  opacity: 90%;
 }
 
 #cloudsVideo {
