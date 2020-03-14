@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VideoBg from 'vue-videobg'
+ 
+Vue.component('video-bg', VideoBg)
 
 Vue.use(Vuex)
 
