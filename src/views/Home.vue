@@ -1,12 +1,14 @@
 <template>
 
   <div class="home">
-    <Login/>
+ 
     <!-- <video ref="videoRef" crossorigin="anonymous" muted loop id="cloudsVideo">
     <source src="" type="video/mp4">
     </video> -->
 
     <video-bg :sources="['https://wnortier.github.io/clouds-video/video/Clouds.mp4']" id="cloudsVideo" img="demo/assets/bg.jpg">
+     <Login/>
+  
   <!-- If you want to add content here, a slot is waiting! -->
 </video-bg>
     

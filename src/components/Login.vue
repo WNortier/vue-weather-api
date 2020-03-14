@@ -43,9 +43,9 @@ export default {
   margin-top: 15%;
 }
 
-.card {
+/* .card {
   opacity: 90%;
-}
+} */
 
 
 </style>
