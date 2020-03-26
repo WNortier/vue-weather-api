@@ -29,6 +29,7 @@
 
 <script>
 /* eslint-disable */
+
 export default {
   name: 'Login',
   props: {
@@ -40,12 +41,12 @@ export default {
 <style scoped>
 
 #loginContainer {
-  margin-top: 15%;
+  margin-top: 10%;
 }
 
-/* .card {
-  opacity: 90%;
-} */
+.card {
+  opacity: 0.93;
+}
 
 
 </style>

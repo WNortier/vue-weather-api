@@ -1,23 +1,16 @@
 <template>
+<div class="home">
 
-  <div class="home">
- 
-    <!-- <video ref="videoRef" crossorigin="anonymous" muted loop id="cloudsVideo">
-    <source src="" type="video/mp4">
-    </video> -->
-
-    <video-bg :sources="['https://wnortier.github.io/clouds-video/video/Clouds.mp4']" id="cloudsVideo" img="demo/assets/bg.jpg">
-     <Login/>
-  
+  <Login/>
+  <video-bg :sources="['https://wnortier.github.io/clouds-video/video/Clouds.mp4']" id="cloudsVideo" img="demo/assets/bg.jpg"></video-bg>
   <!-- If you want to add content here, a slot is waiting! -->
-</video-bg>
-    
 
-  </div>
+</div>
 </template>
 
 <script>
 // @ is an alias to /src
+import axios from 'axios';
 import Login from '@/components/Login.vue'
 
 export default {
@@ -25,16 +18,17 @@ export default {
   components: {
     Login
   },
-  //  mounted: function(){
-  //   this.$refs.videoRef.src = "https://wnortier.github.io/clouds-video/video/Clouds.mp4"
-  //   this.$refs.videoRef.play()
-  //  }
+   mounted: function(){
+     axios.get('http://dataservice.accuweather.com/locations/v1/cities/search?q=capetown&apikey=Kpz82H3k2hCmDw9TMv78cfqmBkNSdxXS')
+        .then(function (response) {
+            // handle success
+            console.log(response);
+        })
+   }
 }
 </script>
 
 <style>
-
-
 #cloudsVideo {
     z-index: -1;
     position: fixed;
@@ -43,4 +37,5 @@ export default {
     min-width: 100%; 
     min-height: 100%;
   }
+  
 </style>
