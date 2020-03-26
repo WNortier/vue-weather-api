@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'orbitron';
+    src: url('../assets/webfonts/orbitron-light-webfont.woff') format('woff')
+}
+
+// ul a:hover{
+//     color: #FBC02D !important;
+//   }
+
+
+
+
+  ul a:hover{
+    color: !important;
+  }
+  nav li{
+      text-align: center;
+      text-transform: uppercase;
+  }
+  li > a:after{
+      content: '';
+      display: block;
+      height: 1.5px;
+      background: #FBC02D;
+      transform: scaleX(0);
+      transition: transform .3s;
+  }
+  li > a:hover:after{
+      transform: scaleX(1);
+      transition: transform .3s;
+  }
+  .active{
+      color: #FBC02D !important;
+  }
+
+
+
+  //   .active{
+//     color: #FBC02D !important;
+// }

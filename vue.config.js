@@ -3,3 +3,15 @@ module.exports = {
       ? '/vue-weather-api/'
       : '/'
   }
+
+  // module.exports = {
+  //   css: {
+  //     loaderOptions: {
+  //       sass: {
+  //         prependData: `
+  //           @import "~@/scss/_typo.scss";
+  //         `
+  //       }
+  //     }
+  //   }
+  // };

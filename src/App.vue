@@ -1,56 +1,33 @@
 <template>
   <div id="app">
-        <nav class="navbar navbar-expand-sm navbar-dark bg-secondary mb-3">
-          <div class="container">
-            <a class="navbar-brand" href="#">WeatherServiceAPI</a>
-            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#">Sign in</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Sign up</a>
-              </li>
-              <!-- <li class="nav-item">
-                <a class="nav-link" href="#">Services</a>
-              </li> -->
-              <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
-              </li>
-            </ul>
-          </div>
-          </div>
-        </nav>
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
+  <video-bg :sources="['https://wnortier.github.io/clouds-video/video/Clouds.mp4']" id="cloudsVideo" img="demo/assets/bg.jpg"></video-bg>
+
+    <app-header/>
     <router-view/>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script>
+import Header from './components/header/Header.vue'
+export default {
+  components: {
+    'app-header': Header
   }
 }
+</script>
+
+<style lang="scss">
+
+#app { 
+    font-family: orbitron;
+}
+
+#cloudsVideo {
+    z-index: -1;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+  }
 </style>
