@@ -7,18 +7,23 @@
             <div class="card-header">Signup</div>
             <form @submit.prevent="onSubmit">
               <div class="card-body">
-                <input v-model="email" @input="$v.email.$touch()" type="text" id="email" class="form-control input-sm chat-input"
+                <div class="input" :class="{invalid: $v.email.$error}">
+                <input v-model="email" @input="$v.email.$touch()" type="text" id="email" class="mb-3 input form-control input-sm chat-input"
                   placeholder="Email" />
-                  <div></div>
-                <br />
-                <input v-model="username" type="text" id="userName" class="form-control input-sm chat-input"
+                </div>
+                <div>
+                  <p v-if="!$v.email.email">Invalid email address</p>
+                  <!-- <p v-if="!$v.email.required">This field is required</p> -->
+                </div>
+                <!-- <br /> -->
+                <input v-model="username" type="text" id="userName" class="mb-3 form-control input-sm chat-input"
                   placeholder="Username" />
-                <br />
-                <input v-model="password" type="password" id="userPassword" class="form-control input-sm chat-input"
+                <!-- <br /> -->
+                <input v-model="password" type="password" id="userPassword" class="mb-3 form-control input-sm chat-input"
                   placeholder="Password" />
-                <br />
+                <!-- <br /> -->
                 <input v-model="confirmPassword" type="password" id="repeatUserPassword"
-                  class="form-control input-sm chat-input" placeholder="Repeat Password" />
+                  class="mb-3 form-control input-sm chat-input" placeholder="Repeat Password" />
               </div>
               <!-- <div class="input inline">
               <input type="checkbox" class="big-checkbox" id="terms" v-model="terms" />
@@ -83,5 +88,10 @@ export default {
 .big-checkbox {
   width: 15px;
   height: 15px;
+}
+
+.input.invalid input {
+  border: 1px solid red;
+  background-color: darksalmon;
 }
 </style>
