@@ -8,29 +8,49 @@
             <form @submit.prevent="onSubmit">
               <div class="card-body">
                 <div class="input" :class="{invalid: ($v.email.$error && $v.email.required)}">
-                  <!-- <a :class="['btn', (respond === 'responseFound' ? 'btn-yellow' : 'btn-default'), (type === 1 ? 'btn-block' : 'btn-xs center-block')]"> -->
-                <input v-model="email" @blur="$v.email.$touch()" autocomplete="off" type="text" id="email" class="mb-3 input form-control input-sm chat-input"
-                  placeholder="Email" />
+                 
+                  <input v-model="email" @blur="$v.email.$touch()" autocomplete="off" type="text" id="email"
+                    class="mb-3 input form-control input-sm chat-input" placeholder="Email" />
                   <p class="formError" v-if="($v.email.$error && $v.email.required)">Invalid email address</p>
+                  <p class="formError" v-if="(!$v.email.required && $v.email.$error)">This field is required</p>
+
+        <!-- TODO: Add Async vuelidator for already taken email-->
+
                   <!-- {{ $v }} -->
                 </div>
-                  <!-- <p v-if="!$v.email.required">This field is required</p> -->
                 <!-- <br /> -->
-                <input v-model="username" autocomplete="off" type="text" id="userName" class="mb-3 form-control input-sm chat-input"
-                  placeholder="Username" />
+                <div class="input">
+                  <input v-model="username" @blur="$v.username.$touch()" autocomplete="off" type="text" id="userName"
+                    class="mb-3 form-control input-sm chat-input" placeholder="Username" />
+                  <p class="formError" v-if="($v.username.$error && $v.username.required)">Invalid username</p>
+                  <p class="formError" v-if="(!$v.username.required && $v.username.$error)">This field is required</p>
+
+                </div>
+
                 <!-- <br /> -->
-                <input v-model="password" autocomplete="off" type="password" id="userPassword" class="mb-3 form-control input-sm chat-input"
-                  placeholder="Password" />
+                <div class="input" :class="{invalid: ($v.password.$error && $v.password.required)}">
+                  <input v-model="password" @blur="$v.password.$touch()" autocomplete="off" type="password"
+                    id="userPassword" class="mb-3 form-control input-sm chat-input" placeholder="Password" />
+                  <p class="formError" v-if="($v.password.$error && $v.password.required)">Invalid password</p>
+                </div>
+
                 <!-- <br /> -->
-                <input v-model="confirmPassword" autocomplete="off" type="password" id="repeatUserPassword"
-                  class="mb-3 form-control input-sm chat-input" placeholder="Repeat Password" />
+                <div class="input" :class="{invalid: ($v.confirmPassword.$error && $v.confirmPassword.required)}">
+                  <input v-model="confirmPassword" @blur="$v.confirmPassword.$touch()" autocomplete="off"
+                    type="password" id="repeatUserPassword" class="mb-3 form-control input-sm chat-input"
+                    placeholder="Repeat Password" />
+                  <p class="formError" v-if="($v.confirmPassword.$error && $v.confirmPassword.required)">Invalid
+                    password</p>
+                </div>
+                <p class="formError" v-if="(!$v.confirmPassword.sameAs && $v.confirmPassword.required)">Passwords do not
+                  match</p>
               </div>
               <!-- <div class="input inline">
               <input type="checkbox" class="big-checkbox" id="terms" v-model="terms" />
               <label for="terms" class="ml-2">Accept Terms of Use</label>
-            </div> -->
+              </div>-->
               <div class="card-footer text-muted submit">
-                <button class="btn btn-secondary" type="submit">Create Account</button>
+                <button class="btn btn-secondary" type="submit" :disabled="$v.$invalid">Create Account</button>
                 <br />
               </div>
             </form>
@@ -43,37 +63,51 @@
 
 <script>
 /* eslint-disable */
-import { required, email } from 'vuelidate/lib/validators'
+import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
 export default {
   data() {
-      return {
-        email: '',
-        username: '',
-        password: '',
-        confirmPassword: '',
-      }
+    return {
+      email: "",
+      username: "",
+      password: "",
+      confirmPassword: ""
+    };
+  },
+  validations: {
+    email: {
+      required,
+      email
     },
-    validations: {
-      email: {
-        required,
-        email
-      }
+    username: {
+      required,
+      minLength: minLength(6)
     },
-    props: {
-      msg: String
+    password: {
+      required,
+      minLength: minLength(6)
     },
-    methods: {
-      onSubmit() {
-        const formData = {
-          email: this.email,
-          username: this.username,
-          password: this.password,
-          confirmPassword: this.confirmPassword
-        }
-        console.log('formdata', formData)
-      }
+    confirmPassword: {
+      required,
+      minLength: minLength(6),
+      sameAs: sameAs("password")
     }
-  };
+  },
+  props: {
+    msg: String
+  },
+  methods: {
+    onSubmit() {
+      const formData = {
+        email: this.email,
+        username: this.username,
+        password: this.password,
+        confirmPassword: this.confirmPassword
+      };
+      console.log("formdata", formData);
+      console.log($v);
+    }
+  }
+};
 </script>
 
 <style scoped>
