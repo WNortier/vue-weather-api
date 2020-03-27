@@ -23,7 +23,7 @@ export default {
 }
 
 #cloudsVideo {
-    z-index: -1;
+    z-index: 0;
     position: fixed;
     right: 0;
     bottom: 0;

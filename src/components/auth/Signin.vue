@@ -8,11 +8,11 @@
             <div class="card-body">
               <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="Username" />
               <br />
-              <input type="password" v-model="password" id="userPassword" :style="myStyle" @input="changeFont()"
+              <input type="password" v-model="password" id="userPassword" :style="myStyle"
                 class="form-control input-sm chat-input" placeholder="Password" />
             </div>
             <div class="card-footer text-muted">
-              <a href="#" class="btn btn-secondary">Login</a>
+              <a href="#" class="m-2 btn btn-secondary">Login</a>
               <br />
             </div>
           </div>
@@ -52,8 +52,16 @@ export default {
 </script>
 
 <style scoped>
+.btn {
+  width: 110px;
+}
+
+.card-footer {
+  height: absolute;
+}
 .btn-secondary:hover {
   border-color: #fbc02d;
+  border-width: 0.1rem;
 }
 
 #loginContainer {

@@ -29,18 +29,22 @@
 
                 <!-- <br /> -->
                 <div class="input" :class="{invalid: ($v.password.$error && $v.password.required)}">
-                  <input v-model="password" @blur="$v.password.$touch()" autocomplete="off" type="password"
+                  <input v-model="password" @blur="$v.password.$touch()" :style="passwordStyle" autocomplete="off" type="password"
                     id="userPassword" class="mb-3 form-control input-sm chat-input" placeholder="Password" />
                   <p class="formError" v-if="($v.password.$error && $v.password.required)">Invalid password</p>
+                  <p class="formError" v-if="(!$v.password.required && $v.password.$error)">This field is required</p>
+
                 </div>
 
                 <!-- <br /> -->
                 <div class="input" :class="{invalid: ($v.confirmPassword.$error && $v.confirmPassword.required)}">
-                  <input v-model="confirmPassword" @blur="$v.confirmPassword.$touch()" autocomplete="off"
+                  <input v-model="confirmPassword" @blur="$v.confirmPassword.$touch()" :style="confirmPasswordStyle" autocomplete="off"
                     type="password" id="repeatUserPassword" class="mb-3 form-control input-sm chat-input"
                     placeholder="Repeat Password" />
                   <p class="formError" v-if="($v.confirmPassword.$error && $v.confirmPassword.required)">Invalid
                     password</p>
+                  <p class="formError" v-if="(!$v.confirmPassword.required && $v.confirmPassword.$error)">This field is required</p>
+
                 </div>
                 <p class="formError" v-if="(!$v.confirmPassword.sameAs && $v.confirmPassword.required)">Passwords do not
                   match</p>
@@ -67,6 +71,7 @@ import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
 export default {
   data() {
     return {
+      font: "hellvetica",
       email: "",
       username: "",
       password: "",
@@ -106,30 +111,61 @@ export default {
       console.log("formdata", formData);
       console.log($v);
     }
+  },
+  computed: {
+    passwordStyle: function () {
+      if (this.password.length != 0) {
+        return {
+          fontFamily: this.font
+        } 
+          return null
+      }
+    },
+    confirmPasswordStyle: function () {
+      if (this.confirmPassword.length != 0) {
+        return {
+          fontFamily: this.font
+        } 
+          return null
+      }
+    }
   }
 };
 </script>
 
 <style scoped>
-#SignupContainer {
-  margin-top: 10%;
-}
+  .btn.btn-secondary-disabled {
+    pointer-events: none;
+  }
 
-.card {
-  opacity: 0.93;
-}
+  .btn.btn-secondary:hover {
+    border-color: #fbc02d;
+    border-width: 2px;
+  }
+  
+  /* .btn {
+    width: 167px;
+  } */
 
-.big-checkbox {
-  width: 15px;
-  height: 15px;
-}
+  #SignupContainer {
+    margin-top: 10%;
+  }
 
-.input.invalid input {
-  /* border: 1px solid red; */
-  background-color: darksalmon;
-}
+  .card {
+    opacity: 0.93;
+  }
 
-.formError {
-  color: red;
-}
+  .big-checkbox {
+    width: 15px;
+    height: 15px;
+  }
+
+  .input.invalid input {
+    /* border: 1px solid red; */
+    background-color: darksalmon;
+  }
+
+  .formError {
+    color: red;
+  }
 </style>
