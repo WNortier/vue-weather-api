@@ -5,8 +5,11 @@ import store from './store'
 import VideoBg from 'vue-videobg'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import  './scss/main.scss'
+import Vuelidate from 'vuelidate';
 
-Vue.use(BootstrapVue)
+Vue.use(BootstrapVue);
+Vue.use(Vuelidate);
+
 // Install BootstrapVue
 
 Vue.component('video-bg', VideoBg)

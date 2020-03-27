@@ -7,8 +7,9 @@
             <div class="card-header">Signup</div>
             <form @submit.prevent="onSubmit">
               <div class="card-body">
-                <input v-model="email" type="text" id="email" class="form-control input-sm chat-input"
+                <input v-model="email" @input="$v.email.$touch()" type="text" id="email" class="form-control input-sm chat-input"
                   placeholder="Email" />
+                  <div>{{$v}}</div>
                 <br />
                 <input v-model="username" type="text" id="userName" class="form-control input-sm chat-input"
                   placeholder="Username" />
@@ -37,31 +38,37 @@
 
 <script>
 /* eslint-disable */
-
+import { required, email } from 'vuelidate/lib/validators'
 export default {
-  data () {
-    return {
-      email: '',
-      username: '',
-      password: '',
-      confirmPassword: '',
-    }
-  },
-  props: {
-    msg: String
-  },
-  methods: {
-    onSubmit(){
-      const formData = {
-        email: this.email,
-        username: this.username,
-        password: this.password,
-        confirmPassword: this.confirmPassword
+  data() {
+      return {
+        email: '',
+        username: '',
+        password: '',
+        confirmPassword: '',
       }
-      console.log('formdata', formData)
+    },
+    validations: {
+      email: {
+        required,
+        email
+      }
+    },
+    props: {
+      msg: String
+    },
+    methods: {
+      onSubmit() {
+        const formData = {
+          email: this.email,
+          username: this.username,
+          password: this.password,
+          confirmPassword: this.confirmPassword
+        }
+        console.log('formdata', formData)
+      }
     }
-  }
-};
+  };
 </script>
 
 <style scoped>
