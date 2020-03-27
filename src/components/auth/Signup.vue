@@ -9,7 +9,7 @@
               <div class="card-body">
                 <input v-model="email" @input="$v.email.$touch()" type="text" id="email" class="form-control input-sm chat-input"
                   placeholder="Email" />
-                  <div>{{$v}}</div>
+                  <div></div>
                 <br />
                 <input v-model="username" type="text" id="userName" class="form-control input-sm chat-input"
                   placeholder="Username" />
