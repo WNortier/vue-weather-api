@@ -7,22 +7,22 @@
             <div class="card-header">Signup</div>
             <form @submit.prevent="onSubmit">
               <div class="card-body">
-                <div class="input" :class="{invalid: $v.email.$error}">
-                <input v-model="email" @input="$v.email.$touch()" type="text" id="email" class="mb-3 input form-control input-sm chat-input"
+                <div class="input" :class="{invalid: ($v.email.$error && $v.email.required)}">
+                  <!-- <a :class="['btn', (respond === 'responseFound' ? 'btn-yellow' : 'btn-default'), (type === 1 ? 'btn-block' : 'btn-xs center-block')]"> -->
+                <input v-model="email" @blur="$v.email.$touch()" autocomplete="off" type="text" id="email" class="mb-3 input form-control input-sm chat-input"
                   placeholder="Email" />
+                  <p class="formError" v-if="($v.email.$error && $v.email.required)">Invalid email address</p>
+                  <!-- {{ $v }} -->
                 </div>
-                <div>
-                  <p v-if="!$v.email.email">Invalid email address</p>
                   <!-- <p v-if="!$v.email.required">This field is required</p> -->
-                </div>
                 <!-- <br /> -->
-                <input v-model="username" type="text" id="userName" class="mb-3 form-control input-sm chat-input"
+                <input v-model="username" autocomplete="off" type="text" id="userName" class="mb-3 form-control input-sm chat-input"
                   placeholder="Username" />
                 <!-- <br /> -->
-                <input v-model="password" type="password" id="userPassword" class="mb-3 form-control input-sm chat-input"
+                <input v-model="password" autocomplete="off" type="password" id="userPassword" class="mb-3 form-control input-sm chat-input"
                   placeholder="Password" />
                 <!-- <br /> -->
-                <input v-model="confirmPassword" type="password" id="repeatUserPassword"
+                <input v-model="confirmPassword" autocomplete="off" type="password" id="repeatUserPassword"
                   class="mb-3 form-control input-sm chat-input" placeholder="Repeat Password" />
               </div>
               <!-- <div class="input inline">
@@ -91,7 +91,11 @@ export default {
 }
 
 .input.invalid input {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   background-color: darksalmon;
+}
+
+.formError {
+  color: red;
 }
 </style>
