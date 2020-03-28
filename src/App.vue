@@ -9,10 +9,19 @@
 
 <script>
 import Header from './components/header/Header.vue'
+import axios from 'axios'
 export default {
   components: {
-    'app-header': Header
-  }
+      'app-header': Header
+    },
+    mounted() {
+
+      axios.post("/conn/locations/add-location", {'title': 'second', 'content':'gauteng'}).then((response) => {
+        console.log(response.data)
+      })
+
+
+    }
 }
 </script>
 

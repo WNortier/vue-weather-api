@@ -6,7 +6,10 @@ import VideoBg from 'vue-videobg'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import  './scss/main.scss'
 import Vuelidate from 'vuelidate';
-
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+ 
+Vue.use(VueAxios, axios)
 Vue.use(BootstrapVue);
 Vue.use(Vuelidate);
 

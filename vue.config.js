@@ -4,14 +4,19 @@ module.exports = {
       : '/'
   }
 
-  // module.exports = {
-  //   css: {
-  //     loaderOptions: {
-  //       sass: {
-  //         prependData: `
-  //           @import "~@/scss/_typo.scss";
-  //         `
-  //       }
-  //     }
-  //   }
-  // };
+module.exports = {
+    devServer: {
+      proxy: {
+        '^/conn': {
+          target: 'http://localhost:3000',
+          ws: true,
+          changeOrigin: true,
+          pathRewrite: {
+                      '^/conn': ''
+                    }
+        }
+      }
+    }
+  }
+
+  // axios.post("/conn/back-endRouteGoesHere"
