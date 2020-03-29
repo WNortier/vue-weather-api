@@ -32,7 +32,7 @@
                   <input v-model="password" @blur="$v.password.$touch()" :style="passwordStyle" autocomplete="off" type="password"
                     id="userPassword" class="mb-3 form-control input-sm chat-input" placeholder="Password" />
                   <p class="formError" v-if="($v.password.$error && $v.password.required)">Invalid password</p>
-                  <p class="formError" v-if="(!$v.password.required && $v.password.$error)">This field is required</p>
+                  <p class="formError" ref="error" v-if="(!$v.password.required && $v.password.$error)">This field is required</p>
 
                 </div>
 
@@ -48,13 +48,14 @@
                 </div>
                 <p class="formError" v-if="(!$v.confirmPassword.sameAs && $v.confirmPassword.required)">Passwords do not
                   match</p>
+                <p>{{createConfirmation}}</p>
               </div>
               <!-- <div class="input inline">
               <input type="checkbox" class="big-checkbox" id="terms" v-model="terms" />
               <label for="terms" class="ml-2">Accept Terms of Use</label>
               </div>-->
               <div class="card-footer text-muted submit">
-                <button class="btn btn-secondary" type="submit" :disabled="$v.$invalid">Create Account</button>
+                <button class="btn btn-secondary" type="submit.prevent" :disabled="$v.$invalid">Create Account</button>
                 <br />
               </div>
             </form>
@@ -68,6 +69,7 @@
 <script>
 /* eslint-disable */
 import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -75,7 +77,8 @@ export default {
       email: "",
       username: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
+      createConfirmation: ""
     };
   },
   validations: {
@@ -108,8 +111,26 @@ export default {
         password: this.password,
         confirmPassword: this.confirmPassword
       };
-      console.log("formdata", formData);
-      console.log($v);
+      //console.log("formdata", formData);
+      axios.post("/conn/locations/add-user", formData).then((response) => {
+        this.createConfirmation = response.data.message
+      })
+      this.email = "";
+      this.username = "";
+      this.password = "";
+      this.confirmPassword = "";
+      // let errors = document.querySelectorAll('.formError')
+      // console.log($v.email.required)
+      // errors.innerHTML = "";
+      this.$v.$reset();
+    }
+  },
+  watch: {
+    createConfirmation: function () {
+        var vm = this;
+        return setTimeout(function(){
+          vm.createConfirmation = "";
+        }, 3000);
     }
   },
   computed: {
