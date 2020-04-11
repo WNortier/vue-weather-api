@@ -10,13 +10,18 @@
 <script>
 import Header from './components/header/Header.vue'
 import axios from 'axios'
+
 export default {
   components: {
       'app-header': Header
     },
     mounted() {
 
-      axios.post("/conn/locations/add-location", {'title': 'second', 'content':'gauteng'}).then((response) => {
+      // axios.post("/conn/locations/add-location", {'title': 'second', 'content':'gauteng'}).then((response) => {
+      //   console.log(response.data)
+      // })
+
+            axios.post("/conn/weather/get-location-key", {'location': 'capetown'}).then((response) => {
         console.log(response.data)
       })
 
@@ -27,8 +32,8 @@ export default {
 
 <style lang="scss">
 
-#app { 
-    font-family: orbitron;
+#app {
+    font-family: orbitron, monospace;
 }
 
 #cloudsVideo {
@@ -36,7 +41,7 @@ export default {
     position: fixed;
     right: 0;
     bottom: 0;
-    min-width: 100%; 
+    min-width: 100%;
     min-height: 100%;
   }
 </style>

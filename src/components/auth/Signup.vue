@@ -112,7 +112,7 @@ export default {
         confirmPassword: this.confirmPassword
       };
       //console.log("formdata", formData);
-      axios.post("/conn/locations/add-user", formData).then((response) => {
+      axios.post("/conn/users/add-user", formData).then((response) => {
         this.createConfirmation = response.data.message
       })
       this.email = "";

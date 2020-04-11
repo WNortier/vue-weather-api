@@ -20,10 +20,10 @@
       </div>
     </div>
   </nav> -->
-  <b-navbar class="mynavbar" toggleable="lg" type="dark" variant="dark">
+  <b-navbar class="my-nav-bar" toggleable="lg" type="dark" variant="dark">
 <b-container>
 
-  
+
     <b-navbar-brand to="/">WeatherServiceAPI</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -66,12 +66,12 @@
 
 <script>
 export default {
-    
+
 }
 </script>
 
 <style>
-.mynavbar {
+.my-nav-bar {
   opacity: 0.93;
 }
 
