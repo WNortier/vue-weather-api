@@ -6,7 +6,7 @@
       img="demo/assets/bg.jpg"
     ></video>-->
 
-    <video muted="true" autoplay loop id="cloudsVideo">
+    <video autoplay loop muted playsinline id="cloudsVideo">
       <source
         src="https://wnortier.github.io/clouds-video/video/Clouds.mp4"
         type="video/mp4"
@@ -71,12 +71,6 @@ export default {
     //   console.log(response.data)
     // })
     const video = document.getElementById("cloudsVideo");
-
-    // console.log(video);
-    // video.onloadstart = function() {
-    //   console.log("load has started");
-    // };
-
     video.oncanplay = function() {
       const overlay = document.querySelector(".overlay");
       overlay.classList.add("hide");
