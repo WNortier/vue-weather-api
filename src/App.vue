@@ -6,7 +6,7 @@
       img="demo/assets/bg.jpg"
     ></video>-->
 
-    <video id="cloudsVideo" autoplay>
+    <video autoplay id="cloudsVideo">
       <source
         src="https://wnortier.github.io/clouds-video/video/Clouds.mp4"
         type="video/mp4"
@@ -34,6 +34,7 @@ export default {
       weatherText: "",
       color: "#FBC02D",
       loading: true,
+      size: "",
       loadingText: "Loading...",
       defaultLoadingText: "Loading...",
       loadingText2: "Searching...",
@@ -76,6 +77,7 @@ export default {
       console.log("load has started");
     };
     video.oncanplay = function() {
+      console.log("done");
       overlay.classList.add("hide");
     };
     // let self = this;
