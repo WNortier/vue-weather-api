@@ -6,12 +6,12 @@
       img="demo/assets/bg.jpg"
     ></video>-->
 
-    <video id="cloudsVideo" autoplay>
+    <!-- <video id="cloudsVideo" autoplay>
       <source
         src="https://wnortier.github.io/clouds-video/video/Clouds.mp4"
         type="video/mp4"
       />
-    </video>
+    </video> -->
 
     <app-header v-bind:weatherInfo="weatherText"></app-header>
     <!-- <div class="overlay">
