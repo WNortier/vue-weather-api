@@ -12,7 +12,8 @@
                 class="form-control input-sm chat-input" placeholder="Password" />
             </div>
             <div class="card-footer text-muted">
-              <a href="#" class="m-2 btn btn-secondary">Login</a>
+              <!-- <a href="#" class="m-2 btn btn-secondary">Login</a> -->
+              <input type="submit" @click="userLogin" class="m-2 btn btn-secondary" value="Login">
               <br />
             </div>
           </div>
@@ -36,7 +37,9 @@ export default {
 
   },
   methods: {
-
+    userLogin(){
+      this.$router.push('/Main')
+    }
   },
   computed: {
     myStyle: function () {

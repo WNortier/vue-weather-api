@@ -76,11 +76,10 @@ export default {
       overlay.classList.add("hide");
     };
 
-    // setTimeout(function() {}, 5000);
 
     // let self = this;
     // axios
-    //   .post("/conn/weather/get-location-key", { location: "Cape Town" })
+    //   .post("/conn/weather/get-location-key", { location: "Cape Town, Western Cape" })
     //   .then(response => {
     //     console.log(response.data);
     //     self.weatherText = response.data.message;

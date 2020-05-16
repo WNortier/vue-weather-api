@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-4 offset-md-4">
           <div class="card text-center card bg-default mb-3">
-            <div class="card-header">Signup</div>
+            <div class="card-header">SIGNUP</div>
             <form @submit.prevent="onSubmit">
               <div class="card-body">
                 <div class="input" :class="{invalid: ($v.email.$error && $v.email.required)}">
