@@ -6,18 +6,18 @@
       img="demo/assets/bg.jpg"
     ></video>-->
 
-    <!-- <video id="cloudsVideo" autoplay>
+    <video id="cloudsVideo" autoplay>
       <source
         src="https://wnortier.github.io/clouds-video/video/Clouds.mp4"
         type="video/mp4"
       />
-    </video> -->
+    </video>
 
     <app-header v-bind:weatherInfo="weatherText"></app-header>
-    <!-- <div class="overlay">
+    <div class="overlay">
       <ring-loader :loading="loading" :color="color" :size="size"></ring-loader>
       <p class="loadingText">{{ loadingText }} {{ loaderMessage }}</p>
-    </div> -->
+    </div>
 
     <router-view />
   </div>
@@ -69,15 +69,15 @@ export default {
     // axios.post("/conn/locations/add-location", {'title': 'second', 'content':'gauteng'}).then((response) => {
     //   console.log(response.data)
     // })
-    //  const video = document.getElementById("cloudsVideo");
-    //   const overlay = document.querySelector(".overlay");
-    //   console.log(video);
-    //   video.onloadstart = function() {
-    //     console.log("load has started");
-    //   };
-    //   video.oncanplay = function() {
-    //     overlay.classList.add("hide");
-    //   };
+    const video = document.getElementById("cloudsVideo");
+    const overlay = document.querySelector(".overlay");
+    console.log(video);
+    video.onloadstart = function() {
+      console.log("load has started");
+    };
+    video.oncanplay = function() {
+      overlay.classList.add("hide");
+    };
     // let self = this;
     // axios
     //   .post("/conn/weather/get-location-key", { location: "Cape Town" })
@@ -104,30 +104,30 @@ export default {
   min-height: 100%;
 }
 
-// .overlay {
-//   z-index: 5;
-//   position: fixed;
-//   right: 0;
-//   bottom: 0;
-//   min-width: 100%;
-//   min-height: 100%;
-//   background-color: #f1f1f1;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-// }
+.overlay {
+  z-index: 5;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  background-color: #f1f1f1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-// .loader {
-//   z-index: 6;
-//   color: black;
-// }
+.loader {
+  z-index: 6;
+  color: black;
+}
 
-// .loadingText {
-//   padding-top: 1rem;
-// }
+.loadingText {
+  padding-top: 1rem;
+}
 
-// .hide {
-//   visibility: hidden;
-// }
+.hide {
+  visibility: hidden;
+}
 </style>
