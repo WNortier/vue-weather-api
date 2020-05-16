@@ -77,15 +77,12 @@ export default {
     //   console.log("load has started");
     // };
 
-    // video.oncanplay = function() {
-    //   console.log("done");
-    //   video.play();
-    // };
-
-    setTimeout(function() {
+    video.oncanplay = function() {
       const overlay = document.querySelector(".overlay");
       overlay.classList.add("hide");
-    }, 5000);
+    };
+
+    // setTimeout(function() {}, 5000);
 
     // let self = this;
     // axios
