@@ -1,54 +1,137 @@
 <template>
   <div id="app">
-  <video-bg :sources="['https://wnortier.github.io/clouds-video/video/Clouds.mp4']" id="cloudsVideo" img="demo/assets/bg.jpg"></video-bg>
+    <!-- <video
+      :sources="['https://wnortier.github.io/clouds-video/video/Clouds.mp4']"
+      id="cloudsVideo"
+      img="demo/assets/bg.jpg"
+    ></video>-->
+
+    <video id="cloudsVideo" autoplay>
+      <source
+        src="https://wnortier.github.io/clouds-video/video/Clouds.mp4"
+        type="video/mp4"
+      />
+    </video>
 
     <app-header v-bind:weatherInfo="weatherText"></app-header>
-    <router-view/>
+    <div class="overlay">
+      <ring-loader :loading="loading" :color="color" :size="size"></ring-loader>
+      <p class="loadingText">{{ loadingText }} {{ loaderMessage }}</p>
+    </div>
+
+    <router-view />
   </div>
 </template>
 
 <script>
-import Header from './components/header/Header.vue'
-import axios from 'axios'
+import RingLoader from "vue-spinner/src/RingLoader.vue";
+import Header from "./components/header/Header.vue";
+import axios from "axios";
 
 export default {
   data() {
     return {
-      weatherText: ''
-    }
+      weatherText: "",
+      color: "#FBC02D",
+      loading: true,
+      loadingText: "Loading...",
+      defaultLoadingText: "Loading...",
+      loadingText2: "Searching...",
+      loadingText3: "Something..."
+    };
   },
   components: {
-      'app-header': Header
-    },
-    mounted() {
-
-      // axios.post("/conn/locations/add-location", {'title': 'second', 'content':'gauteng'}).then((response) => {
-      //   console.log(response.data)
-      // })
-        let self = this;
-            axios.post("/conn/weather/get-location-key", {'location': 'Cape Town'}).then((response) => {
-        console.log(response.data)
-        self.weatherText = response.data.message
-        console.log(self.weatherText)
-
-        
-      })
+    "app-header": Header,
+    "ring-loader": RingLoader
+  },
+  computed: {
+    loaderMessage: function() {
+      let vm = this;
+      setInterval(function() {
+        switch (vm.loadingText) {
+          case "Loading...": {
+            vm.loadingText = vm.loadingText2;
+            break;
+          }
+          case "Searching...": {
+            vm.loadingText = vm.loadingText3;
+            break;
+          }
+          case "Something...": {
+            vm.loadingText = vm.defaultLoadingText;
+            break;
+          }
+        }
+      }, 2000);
     }
-}
+  },
+  mounted() {
+    // axios.post("/conn/locations/add-location", {'title': 'second', 'content':'gauteng'}).then((response) => {
+    //   console.log(response.data)
+    // })
+    const video = document.getElementById("cloudsVideo");
+    const overlay = document.querySelector(".overlay");
+
+    console.log(video);
+
+    video.onloadstart = function() {
+      console.log("load has started");
+    };
+
+    video.oncanplay = function() {
+      overlay.classList.add("hide");
+    };
+
+    // let self = this;
+    // axios
+    //   .post("/conn/weather/get-location-key", { location: "Cape Town" })
+    //   .then(response => {
+    //     console.log(response.data);
+    //     self.weatherText = response.data.message;
+    //     console.log(self.weatherText);
+    //   });
+  }
+};
 </script>
 
 <style lang="scss">
-
 #app {
-    font-family: orbitron, monospace;
+  font-family: orbitron, monospace;
 }
 
 #cloudsVideo {
-    z-index: 0;
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-  }
+  z-index: 0;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.overlay {
+  z-index: 5;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  background-color: #f1f1f1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader {
+  z-index: 6;
+  color: black;
+}
+
+.loadingText {
+  padding-top: 1rem;
+}
+
+.hide {
+  visibility: hidden;
+}
 </style>
