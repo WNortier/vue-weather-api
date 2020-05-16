@@ -4,19 +4,19 @@ module.exports = {
       : '/'
   }
 
-module.exports = {
-    devServer: {
-      proxy: {
-        '^/conn': {
-          target: 'http://localhost:3000',
-          ws: true,
-          changeOrigin: true,
-          pathRewrite: {
-                      '^/conn': ''
-                    }
-        }
-      }
-    }
-  }
+// module.exports = {
+//     devServer: {
+//       proxy: {
+//         '^/conn': {
+//           target: 'http://localhost:3000',
+//           ws: true,
+//           changeOrigin: true,
+//           pathRewrite: {
+//                       '^/conn': ''
+//                     }
+//         }
+//       }
+//     }
+//   }
 
   // axios.post("/conn/back-endRouteGoesHere"
