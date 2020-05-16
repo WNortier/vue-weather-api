@@ -6,7 +6,7 @@
       img="demo/assets/bg.jpg"
     ></video>-->
 
-    <video autoplay id="cloudsVideo">
+    <video muted="true" autoplay loop id="cloudsVideo">
       <source
         src="https://wnortier.github.io/clouds-video/video/Clouds.mp4"
         type="video/mp4"
@@ -15,7 +15,7 @@
 
     <app-header v-bind:weatherInfo="weatherText"></app-header>
     <div class="overlay">
-      <ring-loader :loading="loading" :color="color" :size="size"></ring-loader>
+      <ring-loader :loading="loading" :color="color"></ring-loader>
       <p class="loadingText">{{ loadingText }} {{ loaderMessage }}</p>
     </div>
 
@@ -37,8 +37,8 @@ export default {
       size: "",
       loadingText: "Loading...",
       defaultLoadingText: "Loading...",
-      loadingText2: "Searching...",
-      loadingText3: "Something..."
+      loadingText2: "Securing Connection...",
+      loadingText3: "Establishing Weatherlink..."
     };
   },
   components: {
@@ -54,16 +54,16 @@ export default {
             vm.loadingText = vm.loadingText2;
             break;
           }
-          case "Searching...": {
+          case "Securing Connection...": {
             vm.loadingText = vm.loadingText3;
             break;
           }
-          case "Something...": {
+          case "Establishing Weatherlink...": {
             vm.loadingText = vm.defaultLoadingText;
             break;
           }
         }
-      }, 2000);
+      }, 1750);
     }
   },
   mounted() {
@@ -71,15 +71,22 @@ export default {
     //   console.log(response.data)
     // })
     const video = document.getElementById("cloudsVideo");
-    const overlay = document.querySelector(".overlay");
-    console.log(video);
-    video.onloadstart = function() {
-      console.log("load has started");
-    };
-    video.oncanplay = function() {
-      console.log("done");
+
+    // console.log(video);
+    // video.onloadstart = function() {
+    //   console.log("load has started");
+    // };
+
+    // video.oncanplay = function() {
+    //   console.log("done");
+    //   video.play();
+    // };
+
+    setTimeout(function() {
+      const overlay = document.querySelector(".overlay");
       overlay.classList.add("hide");
-    };
+    }, 5000);
+
     // let self = this;
     // axios
     //   .post("/conn/weather/get-location-key", { location: "Cape Town" })
@@ -113,7 +120,7 @@ export default {
   bottom: 0;
   min-width: 100%;
   min-height: 100%;
-  background-color: #f1f1f1;
+  background-color: #3d4348;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -122,11 +129,11 @@ export default {
 
 .loader {
   z-index: 6;
-  color: black;
 }
 
 .loadingText {
   padding-top: 1rem;
+  color: white;
 }
 
 .hide {
