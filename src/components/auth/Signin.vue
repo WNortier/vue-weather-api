@@ -13,7 +13,7 @@
             </div>
             <div class="card-footer text-muted">
               <!-- <a href="#" class="m-2 btn btn-secondary">Login</a> -->
-              <input type="submit" @click="userLogin" class="m-2 btn btn-secondary" value="Login">
+              <input type="submit" @click="userLogin" class="m-2 btn btn-secondary" value="Login" />
               <br />
             </div>
           </div>
@@ -33,21 +33,19 @@ export default {
       font: "hellvetica"
     };
   },
-  props: {
-
-  },
+  props: {},
   methods: {
-    userLogin(){
-      this.$router.push('/Main')
+    userLogin() {
+      this.$router.push("/Main");
     }
   },
   computed: {
-    myStyle: function () {
+    myStyle: function() {
       if (this.password.length != 0) {
         return {
           fontFamily: this.font
-        } 
-          return null
+        };
+        return null;
       }
     }
   }
